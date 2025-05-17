@@ -6,17 +6,21 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import adminRoutes from "./routes/adminroutes.js";
+import reportRoutes from "./routes/reportRoutes.js";
+
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static("uploads")); 
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/appointments", appointmentRoutes);
 app.use("/admin", adminRoutes);
+app.use("/reports", reportRoutes);
 
 const PORT = process.env.PORT || 5000;
 
