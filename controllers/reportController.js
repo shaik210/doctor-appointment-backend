@@ -3,7 +3,7 @@ import Report from "../models/report.js";
 export const uploadReport = async (req, res) => {
   try {
     const { patientID, reportName } = req.body;
-        console.log("Request Body:", req.body);
+        // console.log("Request Body:", req.body);
 
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded." });

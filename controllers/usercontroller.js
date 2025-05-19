@@ -18,7 +18,7 @@ export const getAllDoctors = async (req, res) => {
     };
 
     if (search && specialization) {
-      // BOTH search & specialization applied
+    
       filter.$and = [
         {
           $or: [
@@ -29,13 +29,12 @@ export const getAllDoctors = async (req, res) => {
         { specialization: { $regex: specialization, $options: "i" } },
       ];
     } else if (search) {
-      // Only search
+     
       filter.$or = [
         { name: { $regex: search, $options: "i" } },
         { email: { $regex: search, $options: "i" } },
       ];
     } else if (specialization) {
-      // Only specialization
       filter.specialization = { $regex: specialization, $options: "i" };
     }
 
@@ -94,12 +93,11 @@ export const updateAvalibility = async (req, res) => {
       return res.status(403).json({ message: "Unauthorized" });
     }
 
-    // Clean existing bad slots (optional but recommended)
+
     doctor.availableSlots = doctor.availableSlots.filter(
       (slot) => slot.date && Array.isArray(slot.slots)
     );
 
-    // Push new slot
     doctor.availableSlots.push({
       date: String(date),
       slots: slots.map((s) => String(s)),
