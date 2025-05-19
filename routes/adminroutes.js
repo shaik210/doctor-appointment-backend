@@ -16,7 +16,8 @@ router.post("/doctors", auth, role("admin"), addDoctor);
 router.put("/doctors/:id", auth, role("admin"), updateDoctor);
 router.delete("/doctors/:id", auth, role("admin"), deleteDoctor);
 
-router.get("/patient", auth, role("admin"), getAllPatient);
+// router.get("/patient", auth, role("admin"), getAllPatient);
+router.get("/patient",  getAllPatient);
 router.delete("/patient/:id", auth, role("admin"), deletePatient);
 
 router.post("/pricing", auth, role("admin"), setPricing);

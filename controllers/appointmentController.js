@@ -118,3 +118,28 @@ export const deleteAppointment = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+
+
+//update payment status
+
+export const updatePaymentStatus= async(req,res)=>{
+try{
+  const {id}=req.body;
+  const {paymentStatus,paymentDetails}= req.body;
+
+  const appointment = await Appointment.findById(id);
+
+  if(!appointment){
+    res.status(400).json({message:'No appointment found'})
+  }
+
+appointment.paymentStatus= paymentStatus|| appointment.paymentStatus;
+if(paymentStatus){
+   appointment.paymentDetails = paymentDetails;
+}
+
+ res.json({ message: "Payment status updated", appointment });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

@@ -14,13 +14,25 @@ const appointmentSchema = new mongoose.Schema(
     },
     date: { type: Date, required: true },
     time: { type: String, required: true },
-    slots: {
+    status: {
       type: String,
-      enum: ["Scheduled", "Complted", "Cancelled"],
+      enum: ["Scheduled", "Completed", "Cancelled"],
       default: "Scheduled",
+    },
+    paymentStatus: {
+      type: String,
+      enum: ["Paid", "Pending", "Failed"],
+      default: "Pending",
+    },
+    paymentDetails: {
+      transactionId: String,
+      amount: Number,
+      paymentMethod: String,
+      paidAt: Date,
     },
     notes: { type: String },
   },
+
   { timestamps: true }
 );
 
